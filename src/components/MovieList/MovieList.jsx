@@ -1,33 +1,16 @@
-import { useEffect, useState } from 'react';
-import { getTrendingMovies } from '../../api/movies';
+import MovieListItem from '../MovieListItem/MovieListItem';
 
-const MovieList = () => {
-  const [movies, setMovies] = useState(null);
+import styles from './MovieList.module.css';
 
-  useEffect(() => {
-    const fetchTrendingMovies = async () => {
-      try {
-        const data = await getTrendingMovies();
-
-        setMovies(data.results);
-        console.log('data.results', data.results);
-        console.log('movies', movies);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchTrendingMovies();
-  }, []);
-
+const MovieList = ({ listOfMovies }) => {
   return (
     <div>
-      <ul>
-        {movies !== null &&
-          movies.map(movie => {
+      <ul className={styles.list}>
+        {listOfMovies &&
+          listOfMovies.map(movie => {
             return (
-              <li key={movie.id}>
-                <p>{movie.title}</p>
+              <li className={styles.item} key={movie.id}>
+                <MovieListItem movie={movie} />
               </li>
             );
           })}

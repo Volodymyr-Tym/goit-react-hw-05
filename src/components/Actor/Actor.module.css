@@ -1,0 +1,29 @@
+.wrap {
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+}
+
+.img {
+  align-items: center;
+  width: 100px;
+}
+.info {
+  text-align: center;
+}
+
+.role {
+  color: #555555;
+}
+
+@media screen and (min-width: 768px) {
+  .img {
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .img {
+    width: 200px;
+  }
+}

@@ -1,5 +1,9 @@
 @import './reset.css';
 
+body {
+  background-color: #1d1d24;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

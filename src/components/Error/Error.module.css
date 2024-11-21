@@ -1,0 +1,37 @@
+.wrap {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #fafafa;
+}
+
+.img {
+  max-width: 300px;
+}
+
+.message_wrap {
+  padding-top: 30px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.text {
+  font-size: 18px;
+  margin-left: 20px;
+  margin-bottom: 8px;
+}
+
+.message {
+  font-size: 22px;
+  font-weight: 500;
+  text-decoration: underline;
+}

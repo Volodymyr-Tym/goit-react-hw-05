@@ -1,10 +1,10 @@
 import axios from 'axios';
+import API_TOKEN from './token';
 
 const moviesInstance = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
   headers: {
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMTczNWM0NWM0YzkzNDQ1NGI2MThkNGNjZDM5ZmIyMyIsIm5iZiI6MTcyOTU1NDkzMS4xNzY3NDEsInN1YiI6IjY3MTZlNGE4NjU0MThmMmI4NmJlYjVlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5BTAqu3iZ0UAVFVlpgNuxuhbdQq8eSS7Il8EkrhlXuU',
+    Authorization: `Bearer ${API_TOKEN}`,
   },
 });
 
@@ -15,24 +15,35 @@ export const getTrendingMovies = async () => {
   return data;
 };
 
-// curl --request GET \
-//      --url 'https://api.themoviedb.org/3/trending/movie/day?language=en-US' \
-//      --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMTczNWM0NWM0YzkzNDQ1NGI2MThkNGNjZDM5ZmIyMyIsIm5iZiI6MTcyOTYyMDk3OC4wNTMzMjMsInN1YiI6IjY3MTZlNGE4NjU0MThmMmI4NmJlYjVlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aPTbSe72v4YJ1HSdxCGsNyagzCYBkZQDNxolxnVnXg4' \
-//      --header 'accept: application/json'
+const queryParams = {
+  include_adult: false,
+  language: 'en-US',
+};
 
-export const fetchMoviesBySearchValue = async () => {
-  const { data } = await moviesInstance.get(`search/movie?query=Jack+Reacher`);
+export const fetchMoviesBySearchValue = async searchValue => {
+  const { data } = await moviesInstance.get(
+    `search/movie?query=${searchValue}`,
+    {
+      params: {
+        ...queryParams,
+        q: searchValue,
+      },
+    }
+  );
   return data;
 };
-// const url = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
 
-// const options = {
-//   headers: {
-// 	// Замість api_read_access_token вставте свій токен
-//     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMTczNWM0NWM0YzkzNDQ1NGI2MThkNGNjZDM5ZmIyMyIsIm5iZiI6MTcyOTU1NDkzMS4xNzY3NDEsInN1YiI6IjY3MTZlNGE4NjU0MThmMmI4NmJlYjVlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5BTAqu3iZ0UAVFVlpgNuxuhbdQq8eSS7Il8EkrhlXuU'
-//   }
-// };
+export const fetchMovieDetailsById = async id => {
+  const { data } = await moviesInstance.get(`/movie/${id}`);
+  return data;
+};
 
-// axios.get(url, options)
-//   .then(response => console.log(response))
-//   .catch(err => console.error(err));
+export const fetchMovieCastById = async id => {
+  const { data } = await moviesInstance.get(`/movie/${id}/credits`);
+  return data;
+};
+
+export const fetchMovieReviewsById = async id => {
+  const { data } = await moviesInstance.get(`/movie/${id}/reviews`);
+  return data;
+};
