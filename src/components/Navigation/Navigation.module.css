@@ -4,6 +4,7 @@
   padding: 10px 14px;
   border: 1px solid rgba(255, 136, 0, 0.05);
   border-radius: 5px;
+
   color: #e6ad77;
   font-size: 20px;
 
@@ -19,6 +20,7 @@
 .active_link {
   background-color: #36261b;
   filter: drop-shadow(0px 0px 3px #ff7f08);
+
   color: #fafafa;
 }
 
@@ -26,8 +28,8 @@
   display: flex;
   align-items: center;
   padding: 8px 12px;
-  border-bottom: 1px solid #888888;
   margin-bottom: 8px;
+  border-bottom: 1px solid #888888;
 }
 
 .logo_wrap {
@@ -65,7 +67,7 @@
 
 .nav {
   display: flex;
-  margin-left: 10%;
   column-gap: 10px;
   padding: 4px;
+  margin-left: 10%;
 }

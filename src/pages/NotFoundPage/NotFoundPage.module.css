@@ -7,11 +7,11 @@
 
 .title {
   margin-top: 50px;
+  margin-bottom: 8px;
+
   font-family: Geneva, Verdana, sans-serif;
   font-size: 32px;
   font-weight: 600;
-  margin-bottom: 8px;
-
   color: #e6ad77;
 }
 
@@ -22,8 +22,9 @@
   padding: 12px 20px;
   border: 1px solid rgba(255, 136, 0, 0.05);
   border-radius: 5px;
-  color: #e6ad77;
+
   font-size: 24px;
+  color: #e6ad77;
 
   transition: border-color 250ms linear, filter 250ms linear;
 }
@@ -37,5 +38,6 @@
 .ico {
   width: 40px;
   height: 40px;
+
   color: #ff7f08;
 }

@@ -1,0 +1,37 @@
+.wrap {
+  margin-bottom: 8px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 136, 0, 0.05);
+  border-radius: 5px;
+  background-color: #36261b;
+
+  color: #e6ad77;
+  font-size: 24px;
+
+  transition: border-color 250ms linear, filter 250ms linear, color 250ms linear;
+}
+
+.back:hover,
+.back:focus {
+  outline: transparent;
+  filter: drop-shadow(0px 0px 5px #ff7f08);
+  border-color: rgba(255, 136, 0, 0.4);
+  color: #ff7f08;
+}
+
+.back:hover .ico,
+.back:focus .ico {
+  transform: rotateX(180deg);
+}
+
+.ico {
+  color: #ff7f08;
+
+  transition: transform 500ms linear;
+}

@@ -19,6 +19,7 @@ const MoviesPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+
   let inputValue = '';
 
   const findMoviesByQuery = async searchValue => {
@@ -50,6 +51,7 @@ const MoviesPage = () => {
       return emptyFieldMessage();
     }
     setSearchParams({ q: inputValue });
+
     findMoviesByQuery(inputValue);
 
     event.target.reset();
@@ -57,6 +59,7 @@ const MoviesPage = () => {
 
   useEffect(() => {
     const q = searchParams.get('q');
+
     if (q) {
       findMoviesByQuery(q);
     }
@@ -79,8 +82,10 @@ const MoviesPage = () => {
           onChange={handleChange}
         />
       </form>
+
       {isLoading && <Loader />}
       {isError && <Error err={isError} />}
+
       {fetchedMovies !== null && <MovieList listOfMovies={fetchedMovies} />}
     </div>
   );

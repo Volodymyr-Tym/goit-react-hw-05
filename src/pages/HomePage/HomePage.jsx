@@ -31,7 +31,6 @@ const HomePage = () => {
     if (trendingMovies !== null) {
       return;
     }
-
     fetchTrendingMovies();
   }, []);
 
@@ -39,6 +38,7 @@ const HomePage = () => {
     <Section title={'Tranding today'}>
       {isLoading && <Loader />}
       {isError && <Error err={isError} />}
+
       <MovieList listOfMovies={trendingMovies} />
     </Section>
   );

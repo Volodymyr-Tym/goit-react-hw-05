@@ -37,13 +37,13 @@ const MovieReviews = () => {
     findMovieReviews(params.movieId);
   }, []);
 
-  useEffect(() => {}, [movieReviews]);
-
   return (
     <div className={styles.wrap}>
       {isLoading && <Loader />}
       {isError && <Error err={isError} />}
+
       <h2 className={styles.title}>Reviews</h2>
+
       {Array.isArray(movieReviews) && movieReviews.length === 0 ? (
         <p>There are no comments yet</p>
       ) : (
@@ -58,10 +58,12 @@ const MovieReviews = () => {
                         <BsPersonWorkspace className={styles.ico} />
                         {review.author}
                       </h3>
+
                       <p className={styles.text}>
                         <FaRegComment className={styles.ico_comment} />
                         {review.content}
                       </p>
+
                       <p className={styles.date}>
                         <TbCalendarTime className={styles.ico} />
                         {dataTimeMaker(review.created_at)}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { fetchMovieDetailsById } from '../../api/movies';
 import { srcToImageMaker, srcToIMDbMaker } from '../../tools/toolset';
@@ -7,15 +7,19 @@ import imdblogo from '../../images/imdb-logo.png';
 
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
+import GoBack from '../../components/GoBack/GoBack';
 
 import clsx from 'clsx';
 import styles from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
   const params = useParams();
+  const location = useLocation();
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
+
+  const prevLocation = location.state.from;
 
   const linkClass = ({ isActive }) =>
     clsx(styles.link, isActive && styles.active_link);
@@ -39,12 +43,13 @@ const MovieDetailsPage = () => {
     findMovieDetails(params.movieId);
   }, []);
 
-  useEffect(() => {}, [movieDetails]);
-
   return (
     <div>
       {isLoading && <Loader />}
       {isError && <Error err={isError} />}
+
+      <GoBack path={prevLocation} />
+
       {movieDetails && (
         <>
           <div className={styles.details_wrap}>
@@ -52,24 +57,29 @@ const MovieDetailsPage = () => {
               src={srcToImageMaker(movieDetails.poster_path)}
               alt={movieDetails.title}
             />
+
             <div className={styles.details}>
               <p className={styles.genres}>
                 {Object.values(movieDetails.genres)
                   .map(genre => genre.name)
                   .join(' • ')}
               </p>
+
               <h2 className={styles.title}>
                 {movieDetails.title}{' '}
                 <span className={styles.year}>
                   ({movieDetails.release_date.slice(0, 4)})
                 </span>
               </h2>
+
               {movieDetails.tagline !== '' && (
                 <p className={styles.tagline}>
                   &quot;{movieDetails.tagline}&quot;
                 </p>
               )}
+
               <p className={styles.overview}>{movieDetails.overview}</p>
+
               <ul>
                 <li>
                   Origin country:{' '}
@@ -108,17 +118,21 @@ const MovieDetailsPage = () => {
             <NavLink
               className={linkClass}
               to={`/movies/${params.movieId}/cast`}
+              state={{ from: prevLocation }}
             >
               {' '}
               Cast{' '}
             </NavLink>
+
             <NavLink
               className={linkClass}
               to={`/movies/${params.movieId}/reviews`}
+              state={{ from: prevLocation }}
             >
               {' '}
               Reviews{' '}
             </NavLink>
+
             <Outlet />
           </div>
         </>

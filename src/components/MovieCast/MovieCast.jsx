@@ -20,6 +20,7 @@ const MovieCast = () => {
       setIsLoading(true);
 
       const data = await fetchMovieCastById(id);
+
       setMovieCast(data.cast);
       isError !== null ? setIsError(null) : isError;
     } catch (error) {
@@ -33,13 +34,13 @@ const MovieCast = () => {
     findMovieCast(params.movieId);
   }, []);
 
-  useEffect(() => {}, [movieCast]);
-
   return (
     <div className={styles.wrap}>
       {isLoading && <Loader />}
       {isError && <Error err={isError} />}
+
       <h2 className={styles.title}>Cast</h2>
+
       {Array.isArray(movieCast) && (
         <>
           <ul className={styles.list}>

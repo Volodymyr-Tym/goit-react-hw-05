@@ -15,6 +15,7 @@
 
 .genres {
   margin-bottom: 30px;
+
   color: rgb(107, 34, 3);
   font-weight: 500;
 }
@@ -31,14 +32,16 @@
 }
 
 .tagline {
-  line-height: 0.5em;
   margin-left: 40px;
   margin-bottom: 40px;
+
+  line-height: 0.5em;
   color: rgba(200, 200, 200, 0.7);
 }
 
 .overview {
   margin-bottom: 50px;
+
   font-family: cursive;
   font-size: 20px;
   font-weight: 500;
@@ -60,11 +63,12 @@
   display: inline-flex;
   gap: 10px;
   padding: 10px 14px;
+  margin-left: 10px;
   border: 1px solid rgba(255, 136, 0, 0.05);
   border-radius: 5px;
+
   color: #e6ad77;
   font-size: 20px;
-  margin-left: 10px;
 
   transition: border-color 250ms linear, filter 250ms linear;
 
@@ -82,5 +86,6 @@
 .active_link {
   background-color: #36261b;
   filter: drop-shadow(0px 0px 3px #ff7f08);
+
   color: #fafafa;
 }
