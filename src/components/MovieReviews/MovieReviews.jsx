@@ -35,7 +35,7 @@ const MovieReviews = () => {
 
   useEffect(() => {
     findMovieReviews(params.movieId);
-  }, []);
+  }, [params.movieId]);
 
   return (
     <div className={styles.wrap}>

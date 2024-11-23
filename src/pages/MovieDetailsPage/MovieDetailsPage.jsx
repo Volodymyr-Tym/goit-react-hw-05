@@ -19,7 +19,7 @@ const MovieDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 
-  const prevLocation = location.state.from;
+  const prevLocation = location.state?.from || '/';
 
   const linkClass = ({ isActive }) =>
     clsx(styles.link, isActive && styles.active_link);
@@ -41,7 +41,7 @@ const MovieDetailsPage = () => {
 
   useEffect(() => {
     findMovieDetails(params.movieId);
-  }, []);
+  }, [params.movieId]);
 
   return (
     <div>

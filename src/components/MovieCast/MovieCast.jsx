@@ -14,6 +14,7 @@ const MovieCast = () => {
   const [movieCast, setMovieCast] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
+  // let paramsId = params.movieId;
 
   const findMovieCast = async id => {
     try {
@@ -32,7 +33,7 @@ const MovieCast = () => {
 
   useEffect(() => {
     findMovieCast(params.movieId);
-  }, []);
+  }, [params.movieId]);
 
   return (
     <div className={styles.wrap}>
